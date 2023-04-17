@@ -38,7 +38,7 @@
           <button
             class="sui-btn btn-xlarge btn-danger"
             type="button"
-            @click="goSearch($router)">
+            @click="goSearch">
             搜索
           </button>
         </form>
@@ -49,19 +49,31 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const router = useRouter();
+
 const keyword = ref("");
-function goSearch($router) {
-  $router.push(
-    {
+function goSearch() {
+  if (route.query) {
+    let location = {
       name: "search",
-      params: { keyword: keyword.value },
-      query: { k: keyword.value.toUpperCase() },
-    },
-    () => {},
-    (err) => {
-      console.log(err);
-    }
-  );
+      params: { keyword: keyword.value || undefined },
+    };
+    location.query = route.query;
+    router.push(location);
+  }
+  // router.push(
+  //   {
+  //     name: "search",
+  //     params: { keyword: keyword.value || undefined },
+  //     query: { k: keyword.value.toUpperCase() },
+  //   },
+  //   () => {},
+  //   (err) => {
+  //     console.log(err);
+  //   }
+  // );
 }
 </script>
 

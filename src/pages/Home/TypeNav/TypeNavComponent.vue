@@ -110,8 +110,12 @@ function goSearch() {
       query.category3id = category3id;
     }
 
-    location.query = query;
-    router.push(location);
+    if (route.params) {
+      location.params = route.params;
+      location.query = query;
+      router.push(location);
+    }
+
     // No need to get $router from the goSearch(), can directly use router from useRouter()
     // $router.push(location);
   }
@@ -175,6 +179,7 @@ onMounted(() => {
       position: absolute;
       background: #fafafa;
       z-index: 999;
+      cursor: pointer;
 
       .all-sort-list2 {
         .item {
@@ -201,6 +206,7 @@ onMounted(() => {
             border: 1px solid #ddd;
             top: 0;
             z-index: 9999 !important;
+            cursor: pointer;
 
             .subitem {
               float: left;
@@ -231,6 +237,7 @@ onMounted(() => {
                   width: 415px;
                   padding: 3px 0 0;
                   overflow: hidden;
+                  cursor: pointer;
 
                   em {
                     float: left;

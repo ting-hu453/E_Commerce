@@ -9,7 +9,8 @@ import HeaderComponenet from "./components/Header/HeaderComponent.vue";
 import FooterComponent from "./components/Footer/FooterComponent.vue";
 import { useHomeStore } from "@/store/HomeStore";
 
-//We are only getting the list one time so we have it here, otherwise it will fetch whenever TypeNav is called.
+// We are only getting the list one time so we have it here, otherwise it will fetch whenever TypeNav is called.
+// We cannot put .getCategoryList into main.js because it is not a component.
 const homeStore = useHomeStore();
 homeStore.getCategoryList();
 </script>
